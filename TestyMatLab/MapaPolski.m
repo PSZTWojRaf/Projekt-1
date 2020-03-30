@@ -1,18 +1,18 @@
 DaneMiasta = LoadDaneMiasta('Dane50Miast.xlsx',1,2,50);
 % struktura do konwersji wsp. geograficznych na p³aszczyznê XY
-utmstruct = defaultm('utm');
-utmstruct.zone = '33N';
-utmstruct.geoid = wgs84Ellipsoid;
-utmstruct = defaultm(utmstruct);
+%utmstruct = defaultm('utm');
+%utmstruct.zone = '33N';
+%utmstruct.geoid = wgs84Ellipsoid;
+%utmstruct = defaultm(utmstruct);
 % konwersja na p³aszczyznê XY
-[latitude, longitude] = mfwdtran(utmstruct,DaneMiasta.Latitude,DaneMiasta.Longitude);
-latitude =  latitude*10e-06;
-longitude = longitude*10e-06;
+%[latitude, longitude] = mfwdtran(utmstruct,DaneMiasta.Latitude,DaneMiasta.Longitude);
+%latitude =  latitude*10e-06;
+%longitude = longitude*10e-06;
 
 % wyznaczenie krawêdzi grafu
 A = zeros(height(DaneMiasta));
-%longitude = DaneMiasta.Longitude;
-%latitude = DaneMiasta.Latitude;
+longitude = DaneMiasta.Latitude;
+latitude = DaneMiasta.Longitude;
 nazwa = DaneMiasta.Miasta;
 max_dist = 0.5;
 temp = zeros(height(DaneMiasta),3);
