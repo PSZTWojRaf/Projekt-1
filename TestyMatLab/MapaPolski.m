@@ -54,17 +54,17 @@ tic
 % znalezienie najkrótszej œcie¿ki
 [PATH, D] = shortestpath(G,'Gdansk','Wroclaw');
 toc
-PATH
-D
+%PATH
+%D
 % zaznaczenie najkrótszej œcie¿ki
 g.highlight(PATH,'EdgeColor','g','NodeColor','g');
 
 tic
 % znalezienie najkrótszej œcie¿ki
-[PATH, D] = Astar(G,'Gdansk','Wroclaw');
+[PATH, D] = Astar(G,'Gdansk','Wroclaw',true);
 toc
-PATH
-D
+%PATH
+%D
 % zaznaczenie najkrótszej œcie¿ki
 g.highlight(PATH,'EdgeColor','r','NodeColor','r');
 
