@@ -68,8 +68,7 @@ def astar(G, start, end):
         for x in Ps:
             c = math.sqrt(math.pow((G.nodes[x]['X'] - G.nodes[last_city]['X']), 2) + math.pow((G.nodes[x]['Y'] - G.nodes[last_city]['Y']), 2))
             newPs.append([best_state[0] + [x], best_state[1] + c])
-
-        ## TODO: Eliminate repeating states
+        
         # Adding new states to list of states
         Gs += newPs
         Gs.remove(best_state)
