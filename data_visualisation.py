@@ -6,16 +6,20 @@ import pandas as pd
 
 # loading data from excel using pandas
 # r - to produce raw string otherwise problems with "\"
-loc = (r"C:\Users\Rafal\Documents\PW\6 semestr\PSZT\Projekt-1\NetworkX\DaneMiastaXY.xlsx")
+#loc = (r"C:\Users\Rafal\Documents\PW\6 semestr\PSZT\Projekt-1\NetworkX\DaneMiastaXY.xlsx")
+loc = (r"C:\Users\Nitrox\Google Drive\studia\semestr_6\pszt\projekt\przeszukiwanie\DaneMiastaXY.xlsx")
+
 dataMiasta = pd.read_excel(loc)
-loc_1 = (r"C:\Users\Rafal\Documents\PW\6 semestr\PSZT\Projekt-1\NetworkX\DaneMiastaDrogi.xlsx")
+#loc_1 = (r"C:\Users\Rafal\Documents\PW\6 semestr\PSZT\Projekt-1\NetworkX\DaneMiastaDrogi.xlsx")
+loc_1 = (r"C:\Users\Nitrox\Google Drive\studia\semestr_6\pszt\projekt\przeszukiwanie\DaneMiastaDrogi.xlsx")
+
 dataDrogi = pd.read_excel(loc_1)
-print(dataDrogi.head())
-print(dataMiasta.head())
+#print(dataDrogi.head())
+#print(dataMiasta.head())
 
 # data to numpy array
-M = dataMiasta.values
-D = dataDrogi.values
+M = dataMiasta.to_numpy()
+D = dataDrogi.to_numpy()
 
 # creating graph
 G=nx.Graph()
