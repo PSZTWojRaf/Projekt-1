@@ -1,10 +1,12 @@
-import math
-import copy
 import networkx as nx
 import matplotlib.pyplot as plt
-import numpy as np
-import xlrd
+
 import pandas as pd
+import xlrd
+
+import numpy as np
+import math
+
 import os
 
 import algorithms
@@ -13,14 +15,14 @@ import data_visualisation
 # loading data from excel using pandas
 # r - to produce raw string otherwise problems with "\"
 workspace_path = os.getcwd()
-dataMiasta = pd.read_excel(workspace_path + r"\DaneMiastaXY.xlsx")
-dataDrogi = pd.read_excel(workspace_path + r"\DaneMiastaDrogi.xlsx")
-print(dataDrogi.head())
-print(dataMiasta.head())
+cities_data = pd.read_excel(workspace_path + r"\cities_data.xlsx")
+connections_data = pd.read_excel(workspace_path + r"\connections_data.xlsx")
+print(connections_data.head())
+print(cities_data.head())
 
 # data to numpy array
-M = dataMiasta.values
-D = dataDrogi.values
+M = cities_data.values # deprecated, use instead to_numpy()
+D = connections_data.values
 
 # creating graph
 G=nx.Graph()
