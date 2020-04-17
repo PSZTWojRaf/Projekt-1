@@ -78,7 +78,7 @@ def astar_search(start, end, graph):
 
     # debug
     print(str(current_state))
-    print(it_number)
+    print("Number of iterations (how many times the state was 'unfold'): ", it_number)
     return current_state.path
 
 def breadth_search(start, end, graph):
@@ -136,5 +136,5 @@ def breadth_search(start, end, graph):
         it_number += 1
 
     print(str(final_state))
-    print(it_number)
+    print("Number of iterations (how many times the state was 'unfold'): ", it_number)
     return final_state.path

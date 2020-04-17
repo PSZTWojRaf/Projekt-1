@@ -17,8 +17,11 @@ import data_visualisation
 workspace_path = os.getcwd()
 cities_data = pd.read_excel(workspace_path + r"\cities_data.xlsx")
 connections_data = pd.read_excel(workspace_path + r"\connections_data.xlsx")
-print(connections_data.head())
+print("Cities data: ")
 print(cities_data.head())
+print("Connections data: ")
+print(connections_data.head())
+
 
 # data to numpy array
 M = cities_data.values # deprecated, use instead to_numpy()
@@ -47,12 +50,36 @@ G.add_weighted_edges_from(D)
 # visualising graph
 data_visualisation.visualise('Graph visualisation', G)
 
+# asking for A and B city
+print('Enter starting city: ')
+start = input()
+
+print('Endter final city: ')
+end = input()
+
+# checking if inputs are correct
+if start == end:
+    print("Starting city has to differ from final city.")
+    exit()
+
+if not(G.__contains__(start)):
+    print("Starting city wasn't recognized. \
+    Please look for available cities up in cities_data.xlsx file.")
+    exit()
+
+if not(G.__contains__(end)):
+    print("Final city wasn't recognized. \
+    Please look for available cities up in cities_data.xlsx file.")
+    exit()
+
 # calculating shortest path custom alg.
-my_path = algorithms.astar_search('Szczecin','Wroclaw', G)
+print("Custom A* algorithm output: ")
+my_path = algorithms.astar_search(start, end, G)
 # visualising shortest path custom alg.
 data_visualisation.visualise('Custom A* algorithm', G, my_path)
 
-# calculating shortest path custom alg.
-my_path = algorithms.breadth_search('Szczecin','Wroclaw', G)
+# calculating breadth search custom alg.
+print("Custom Breadth algorithm output: ")
+my_path = algorithms.breadth_search(start, end, G)
 # visualising shortest path custom alg.
 data_visualisation.visualise('Custom Breadth algorithm', G, my_path)
