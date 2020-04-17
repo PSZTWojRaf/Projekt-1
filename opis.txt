@@ -1,7 +1,0 @@
-{Zaimplementować i przetesotować algorytm A ∗ dla zadania znalezienia ścieżki o najmniejszej wadze od punktu A do B. Wejściem aplikacji jest plik z listą krawędzi grafu (dla każdej krawędzi zdefiniowany jest punkt początkowy, koń- cowy i waga krawędzi). Wyjściem aplikacji jest najkrótsza ścieżka od punktu A do punktu B. Porównać działanie algorytmu A ∗ z ”brutalnym”przeszukiwaniem grafu. Zastosowanie dodatkowego algorytmu będzie dodatkowym atutem przy ocenie projektu.}
-
-email: S.Kozdrowski@elka.pw.edu.pl
-
-deadline: 24.04.2020r.
-
-uwagi: -5pkt za każdy tydzień spóźnienia
