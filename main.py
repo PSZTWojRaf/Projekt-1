@@ -54,7 +54,7 @@ data_visualisation.visualise('Graph visualisation', G)
 print('Enter starting city: ')
 start = input()
 
-print('Endter final city: ')
+print('Enter final city: ')
 end = input()
 
 # checking if inputs are correct
@@ -73,13 +73,29 @@ if not(G.__contains__(end)):
     exit()
 
 # calculating shortest path custom alg.
-print("Custom A* algorithm output: ")
-my_path = algorithms.astar_search(start, end, G)
-# visualising shortest path custom alg.
-data_visualisation.visualise('Custom A* algorithm', G, my_path)
+print("\nCustom A* algorithm output: ")
+my_path_astar = algorithms.astar_search(start, end, G, True)
+
+print("\nCustom First Best algorithm output: ")
+my_path_firstbest = algorithms.astar_search(start, end, G, False)
 
 # calculating breadth search custom alg.
-print("Custom Breadth algorithm output: ")
-my_path = algorithms.breadth_search(start, end, G)
-# visualising shortest path custom alg.
-data_visualisation.visualise('Custom Breadth algorithm', G, my_path)
+print("\nCustom Breadth algorithm output: ")
+my_path_breadth = algorithms.breadth_search(start, end, G)
+
+user_input = True
+while user_input != 'e':
+    # asking for visualisation
+    print('\nType:  \n\"1\" to visualise A* alg. path \n\"2\" to visualise First Best alg. path  \n\"3\" to visualise Breadt alg. path. \n\"e\" to exit ')
+    user_input = input()
+
+    if user_input == '1':
+        # visualising shortest path custom alg.
+        data_visualisation.visualise('Custom A* algorithm', G, my_path_astar)
+
+    elif user_input == '2':
+        # visualising shortest path custom alg.
+        data_visualisation.visualise('Custom Breadth algorithm', G, my_path_firstbest)
+    elif user_input == '3':
+        # visualising shortest path custom alg.
+        data_visualisation.visualise('Custom Breadth algorithm', G, my_path_breadth)

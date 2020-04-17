@@ -1,12 +1,13 @@
 import networkx as nx
 import math
+import time
 
 def compute_cost(start, end, nodes, x, y):
     start_idx = nodes.index(start)
     end_idx = nodes.index(end)
     return math.sqrt((x[start_idx][1]-x[end_idx][1])**2+(y[start_idx][1]-y[end_idx][1])**2)
 
-def astar_search(start, end, graph):
+def astar_search(start, end, graph, heuristic):
 
     nodes = list(graph.nodes)
     nodes_x = list(graph.nodes('X'))
@@ -25,7 +26,10 @@ def astar_search(start, end, graph):
             else:
                 self.predecessor = path[-1]
             # heuristic function
-            self.h = compute_cost(self.name, end, nodes, nodes_x, nodes_y)
+            if heuristic == True:
+                self.h = compute_cost(self.name, end, nodes, nodes_x, nodes_y)
+            else:
+                self.h = 0
             # cost of path until this city
             self.cost = cost + compute_cost(self.name, self.predecessor, nodes, nodes_x, nodes_y)
             # cost + h - used to sort
@@ -54,13 +58,17 @@ def astar_search(start, end, graph):
             return  self.h_and_cost != other.h_and_cost
 
         def __str__(self):
-            return "name: " + self.name + ", path: " + str(self.path) + ", cost: " + \
-                str(self.cost) + ", h(s):" + str(self.h)
+            return "path: " + str(self.path) + "\ncost: " + \
+                str(round(self.cost,2)) + "\nh(s):" + str(round(self.h,2))
 
     # list of states with initial state
     g_states = [State(start, [], 0)]
     current_state = g_states[0]
 
+    # begin time measurement
+    time_start = time.clock()
+
+    # main loop of the algorithm
     while current_state.name != end:
         # adding new states
         p_states = list(graph.neighbors(current_state.name))
@@ -79,6 +87,9 @@ def astar_search(start, end, graph):
     # debug
     print(str(current_state))
     print("Number of iterations (how many times the state was 'unfold'): ", it_number)
+    time_end = time.clock()
+    total = time_end - time_start
+    print("Time elapsed: {:03.2f}ms".format(total*1000))
     return current_state.path
 
 def breadth_search(start, end, graph):
@@ -106,7 +117,7 @@ def breadth_search(start, end, graph):
             self.path.append(name)
 
         def __str__(self):
-            return "name: " + self.name + ", path: " + str(self.path) + ", cost: " + str(self.cost)
+            return "path: " + str(self.path) + "\ncost: " + str(round(self.cost,2))
 
     # list of states with initial state
     a_states = [State(start, [], 0)]
@@ -115,7 +126,11 @@ def breadth_search(start, end, graph):
 
     # changes to True if final state is present in a_states
     fin = False
-    
+
+    # begin time measurement
+    time_start = time.clock()
+
+    # main loop of the algorithm
     while not fin:
         # adding new states
         current_state = a_states[0]
@@ -137,4 +152,7 @@ def breadth_search(start, end, graph):
 
     print(str(final_state))
     print("Number of iterations (how many times the state was 'unfold'): ", it_number)
+    time_end = time.clock()
+    total = time_end - time_start
+    print("Time elapsed {:03.2f}ms".format(total*1000))
     return final_state.path
