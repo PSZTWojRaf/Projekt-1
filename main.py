@@ -47,6 +47,7 @@ for data in D:
 # adding edges to graph
 G.add_weighted_edges_from(D)
 
+
 # visualising graph
 data_visualisation.visualise('Graph visualisation', G)
 
@@ -74,14 +75,26 @@ if not(G.__contains__(end)):
 
 # calculating shortest path custom alg.
 print("\nCustom A* algorithm output: ")
-my_path_astar = algorithms.astar_search(start, end, G, True)
+result_astar = algorithms.astar_search(start, end, G, True)
+my_path_astar = result_astar.get('path')
+print(result_astar.get('info'))
+print("Number of iterations (how many times the state was 'unfold'): ", result_astar.get('iterations'))
+print("Time elapsed {:03.4f}ms".format(result_astar.get('time')))
 
 print("\nCustom First Best algorithm output: ")
-my_path_firstbest = algorithms.astar_search(start, end, G, False)
+result_firstbest = algorithms.astar_search(start, end, G, False)
+my_path_firstbest = result_firstbest.get('path')
+print(result_firstbest.get('info'))
+print("Number of iterations (how many times the state was 'unfold'): ", result_firstbest.get('iterations'))
+print("Time elapsed {:03.4f}ms".format(result_firstbest.get('time')))
 
 # calculating breadth search custom alg.
 print("\nCustom Breadth algorithm output: ")
-my_path_breadth = algorithms.breadth_search(start, end, G)
+result_breadth = algorithms.breadth_search(start, end, G)
+my_path_breadth = result_breadth.get('path')
+print(result_breadth.get('info'))
+print("Number of iterations (how many times the state was 'unfold'): ", result_breadth.get('iterations'))
+print("Time elapsed {:03.4f}ms".format(result_breadth.get('time')))
 
 user_input = True
 while user_input != 'e':

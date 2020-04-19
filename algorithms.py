@@ -81,16 +81,13 @@ def astar_search(start, end, graph, heuristic):
         g_states.remove(current_state)
         # searching for the best next state
         current_state = min(g_states)
-        
+
         it_number += 1
 
-    # debug
-    print(str(current_state))
-    print("Number of iterations (how many times the state was 'unfold'): ", it_number)
     time_end = time.time()
     total = time_end - time_start
-    print("Time elapsed: {:03.2f}ms".format(total*1000))
-    return current_state.path
+    return {'path':current_state.path, 'time': total*1000, 'iterations': it_number, 'info':str(current_state)}
+
 
 def breadth_search(start, end, graph):
 
@@ -150,9 +147,6 @@ def breadth_search(start, end, graph):
 
         it_number += 1
 
-    print(str(final_state))
-    print("Number of iterations (how many times the state was 'unfold'): ", it_number)
     time_end = time.time()
     total = time_end - time_start
-    print("Time elapsed {:03.2f}ms".format(total*1000))
-    return final_state.path
+    return {'path':final_state.path, 'time': total*1000, 'iterations': it_number, 'info':str(final_state)}
