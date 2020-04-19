@@ -66,7 +66,7 @@ def astar_search(start, end, graph, heuristic):
     current_state = g_states[0]
 
     # begin time measurement
-    time_start = time.clock()
+    time_start = time.time()
 
     # main loop of the algorithm
     while current_state.name != end:
@@ -74,20 +74,20 @@ def astar_search(start, end, graph, heuristic):
         p_states = list(graph.neighbors(current_state.name))
         for s in p_states:
             # checking if not going back to previous state
-            if s != current_state.predecessor:
+            if not(s in current_state.path):
                 new = State(s, current_state.path, current_state.cost)
                 g_states.append(new)
         # removing the old state
         g_states.remove(current_state)
         # searching for the best next state
         current_state = min(g_states)
-
+        
         it_number += 1
 
     # debug
     print(str(current_state))
     print("Number of iterations (how many times the state was 'unfold'): ", it_number)
-    time_end = time.clock()
+    time_end = time.time()
     total = time_end - time_start
     print("Time elapsed: {:03.2f}ms".format(total*1000))
     return current_state.path
@@ -128,7 +128,7 @@ def breadth_search(start, end, graph):
     fin = False
 
     # begin time measurement
-    time_start = time.clock()
+    time_start = time.time()
 
     # main loop of the algorithm
     while not fin:
@@ -152,7 +152,7 @@ def breadth_search(start, end, graph):
 
     print(str(final_state))
     print("Number of iterations (how many times the state was 'unfold'): ", it_number)
-    time_end = time.clock()
+    time_end = time.time()
     total = time_end - time_start
     print("Time elapsed {:03.2f}ms".format(total*1000))
     return final_state.path
