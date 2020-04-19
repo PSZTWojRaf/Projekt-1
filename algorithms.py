@@ -59,14 +59,14 @@ def astar_search(start, end, graph, heuristic):
 
         def __str__(self):
             return "path: " + str(self.path) + "\ncost: " + \
-                str(round(self.cost,2)) + "\nh(s):" + str(round(self.h,2))
+                str(round(self.cost*111.19662,2))+"km." + "\nh(s):" + str(round(self.h*111.19662,2))+"km."
 
     # list of states with initial state
     g_states = [State(start, [], 0)]
     current_state = g_states[0]
 
     # begin time measurement
-    time_start = time.time()
+    time_start = time.clock()
 
     # main loop of the algorithm
     while current_state.name != end:
@@ -84,9 +84,9 @@ def astar_search(start, end, graph, heuristic):
 
         it_number += 1
 
-    time_end = time.time()
+    time_end = time.clock()
     total = time_end - time_start
-    return {'path':current_state.path, 'time': total*1000, 'iterations': it_number, 'info':str(current_state)}
+    return {'path':current_state.path, 'time': total*1000, 'iterations': it_number, 'info':str(current_state), 'cost': round(current_state.cost*111.19662,2)}
 
 
 def breadth_search(start, end, graph):
@@ -114,7 +114,7 @@ def breadth_search(start, end, graph):
             self.path.append(name)
 
         def __str__(self):
-            return "path: " + str(self.path) + "\ncost: " + str(round(self.cost,2))
+            return "path: " + str(self.path) + "\ncost: " + str(round(self.cost*111.19662,2))+"km."
 
     # list of states with initial state
     a_states = [State(start, [], 0)]
@@ -125,7 +125,7 @@ def breadth_search(start, end, graph):
     fin = False
 
     # begin time measurement
-    time_start = time.time()
+    time_start = time.clock()
 
     # main loop of the algorithm
     while not fin:
@@ -147,6 +147,6 @@ def breadth_search(start, end, graph):
 
         it_number += 1
 
-    time_end = time.time()
+    time_end = time.clock()
     total = time_end - time_start
-    return {'path':final_state.path, 'time': total*1000, 'iterations': it_number, 'info':str(final_state)}
+    return {'path':final_state.path, 'time': total*1000, 'iterations': it_number, 'info':str(final_state), 'cost': round(final_state.cost*111.19662,2)}
